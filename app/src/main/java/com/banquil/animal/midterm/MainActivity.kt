@@ -46,9 +46,6 @@ class AnimalNamesActivity : AppCompatActivity() {
             animals.add(Animal("Platypus", placeholderDesc))
         }
 
-
-        animals.sortBy { it.name } //sorts from A to Z
-
         val nonBlockedAnimals = animals.filter { !it.isBlocked }
 
         nonBlockedAnimals.sortedBy { it.name } // sorts non-blocked animals from A to Z

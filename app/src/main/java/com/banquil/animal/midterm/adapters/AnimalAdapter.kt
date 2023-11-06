@@ -38,25 +38,6 @@ public class AnimalAdapter(
         }
     }
 
-
-    class BlockedAnimalViewHolder(
-        private val activity: Activity,
-        private val binding: ItemBlockedanimalBinding,
-    ): RecyclerView.ViewHolder(binding.root) {
-        fun bind(animal: Animal) {
-            binding.name.text = animal.name
-            binding.unblockButton.setOnClickListener {
-
-                // Update the isBlocked status to false for the current animal
-                animal.isBlocked = false
-
-                // Reload activity
-                val intent = Intent(activity, ManageBlockActivity::class.java)
-                activity.startActivity(intent)
-            }
-        }
-    }
-
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int

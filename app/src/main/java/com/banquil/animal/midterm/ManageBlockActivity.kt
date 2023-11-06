@@ -3,7 +3,7 @@ package com.banquil.animal.midterm
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.banquil.animal.midterm.adapters.AnimalAdapter
+import com.banquil.animal.midterm.adapters.BlockedAnimalAdapter
 import com.banquil.animal.midterm.databinding.ActivityManageblockBinding
 import com.banquil.animal.midterm.models.Animal
 import com.google.gson.Gson
@@ -25,13 +25,15 @@ class ManageBlockActivity : AppCompatActivity() {
         val type = object : TypeToken<List<Animal>>() {}.type
         val animals: List<Animal> = gson.fromJson(json, type)
 
-        // Use the list of animals in this activity
-        animals.sortedBy { it.name } // sorts from A to Z
+
+        val blockedAnimals = animals.filter { it.isBlocked }
+
+        blockedAnimals.sortedBy { it.name } // sorts non-blocked animals from A to Z
 
         binding.animalList.layoutManager = LinearLayoutManager(this)
-        binding.animalList.adapter = AnimalAdapter(
+        binding.animalList.adapter = BlockedAnimalAdapter(
             this,
-            animals.toMutableList()
+            blockedAnimals.toMutableList()
         )
     }
 }
